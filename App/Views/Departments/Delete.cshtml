@@ -1,0 +1,28 @@
+﻿@model App.Entities.Department
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<body style="background-color: #FDFCF6">
+
+    <h1 class="text-center">Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </dt>
+
+
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="DepartmentID" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+</body>

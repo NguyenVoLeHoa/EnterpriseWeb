@@ -1,0 +1,118 @@
+﻿@model App.Entities.Post
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1>Details</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Event</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Event)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Event.EventDecription)
+                </dd>
+                <dt class="col-sm-3">
+                    Open Date
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Event.OpenDate)
+                </dd>
+                <dt class="col-sm-3">
+                    Pre Closure Date
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Event.preClosureDate)
+                </dd>
+                <dt class="col-sm-3">
+                    Closure Date
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Event.ClosureDate)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h4>Post</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Brief)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Brief)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.View)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.View)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Like)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Like)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Dislike)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Dislike)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Content
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model.Comments)
+                {
+                    <tr>
+                        <td>
+                            @(comment.ContentDate.ToString("dd/MM/yyyy HH:mm"))
+                        </td>
+                        <td>
+                            @(comment.Content)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <form class="mt-4 form-inline" asp-action="AddComment" asp-route-id="@Model?.PostId">
+        <div class="form-group mb-2 mr-2 d-flex">
+            <input name="Content" value="" placeholder="Enter your comment here..." class="form-control" />
+            <button type="submit" class="btn btn-outline-success mb-2">Comment</button>
+        </div>
+    </form>
+
+
+    <div class="mt-4">
+        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@Model?.PostId">Edit</a>
+        <a class="btn btn-outline-primary" href="/Events/Details/@Model.Event.EventID">Back to List</a>
+    </div>
+
+</div>

@@ -1,0 +1,114 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<App.Entities.Event>
+
+@{
+    ViewData["Title"] = "Index";
+    var eventNames = Model.Select(e => e.EventName).ToArray();
+    var postCounts = Model.Select(m => m.Posts.Count()).ToArray();
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+
+@*<h1 class="text-center">Total Posts of each Event</h1>
+<div class="container">
+    <canvas id="barChart"></canvas>
+</div>
+
+<script>
+    const ctx = document.getElementById('barChart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+    @foreach (var eventName in eventNames)
+    {
+        @Html.Raw($"'{eventName}',")
+    }
+                                ],
+            datasets: [{
+                label: 'Total ideas',
+                data: [
+    @foreach (var count in postCounts)
+    {
+        @Html.Raw($"'{count}',")
+    }
+                                    ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>*@
+
+<h1 class="text-center">Like and dislike of each</h1>
+@foreach (var item in Model)
+{
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row">
+                <div class="container-fluid d-flex justify-content-center">
+                    <div class="col-sm-8 col-md-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                @Html.DisplayFor(modelItem => item.EventName)
+                                <span>@Html.DisplayFor(modelItem => item.OpenDate)</span>
+                            </div>
+                            @if (item.Posts.Count > 0)
+                            {
+                                <div class="card-body">
+                                    @foreach (var post in item.Posts)
+                                    {
+                                        <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                            <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                            </div>
+                                        </div> <canvas id="postId-@Html.DisplayFor(modelPost => post.PostId)" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
+
+                                        <script>
+                                            $(document).ready(function () {
+                                                var myLineChart = new Chart($("#postId-@Html.DisplayFor(modelPost => post.PostId)"), {
+                                                    type: 'pie',
+                                                    data: {
+                                                        labels: ["Like", "Dislike"],
+                                                        datasets: [{
+                                                            data: [@post.Like, @post.Dislike],
+                                                            backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)"]
+                                                        }]
+                                                    },
+                                                    options: {
+                                                        title: {
+                                                            display: true,
+                                                            text: '@Html.DisplayFor(modelPost => post.Title)'
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                    }
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="card-body">
+                                    <span>"There is no post in this event !!!"</span>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+};

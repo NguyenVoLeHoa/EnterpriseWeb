@@ -1,0 +1,39 @@
+﻿@model App.Entities.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+<body style="background-color: #FDFCF6">
+
+    <div class="container">
+        <h1 class="text-center">List of Ideas</h1>
+        <hr>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Event Name
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EventName)
+                </dd>
+                <dt class="col-sm-2">
+                    Open Date
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OpenDate)
+                </dd>
+                <dt class="col-sm-2">
+                    Closure Date
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ClosureDate)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="my-4">
+            <a href="@Url.Action("Edit", new { id = Model?.EventID })" class="btn btn-secondary">Edit</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</body>

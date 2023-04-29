@@ -1,0 +1,68 @@
+﻿@model IEnumerable<App.Entities.Post>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body class="text-center" style="background-color: #FDFCF6">
+    <div class="container" @*style="background-image: url('@Url.Content("~/img/bg1.jpg")');"*@>
+        <h1 class="display-4"> Welcome Greenwich Ideas</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event)
+                    </th>
+                    <th>
+                        Post @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Brief)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.View)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Like)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Dislike)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Event.EventDecription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brief)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.View)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Like)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dislike)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.PostId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</body>

@@ -1,0 +1,59 @@
+﻿@model App.Models.AddUserViewModel
+
+@{
+    ViewData["Title"] = "Create a new User";
+}
+<body style="background-color: #FDFCF6">
+
+    <h1>Create a new User</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-9">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Firstname" class="control-label"></label>
+                    <input asp-for="Firstname" class="form-control" />
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Lastname" class="control-label"></label>
+                    <input asp-for="Lastname" class="form-control" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pwd" class="control-label"></label>
+                    <input asp-for="Pwd" class="form-control" type="password" />
+                    <span asp-validation-for="Pwd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPwd" class="control-label"></label>
+                    <input asp-for="ConfirmPwd" class="form-control" type="password" />
+                    <span asp-validation-for="ConfirmPwd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genre" class="control-label"></label>
+                    <select asp-for="Genre">
+                        <option selected disabled>Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save A New User" class="btn btn-secondary" />
+                </div>
+                <b>@ViewBag.message</b>
+            </form>
+        </div>
+    </div>
+</body>

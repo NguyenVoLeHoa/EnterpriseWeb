@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+<body style="background-color: #FDFCF6">
+    <h1 class="text-center ">@ViewData["Title"]</h1>
+
+    <section class="about-us">
+        <div class="main">
+            <div class="about-text">
+                <h5>Greenwich Idea<span> & US</span></h5>
+                <p>
+                    This is an online tool that helps users to store, manage and share their ideas with colleagues, friends or business partners. With Greenwich Idea, you can create a variety of idea boards to manage ideas by topic or specific project. You can invite others to join your boards, allowing them to view, comment, and contribute to your ideas. Greenwich Idea also offers a host of other useful features, including bookmarking ideas as favorites, filtering and searching for ideas, updating ideas' status and progress, and much more. With a simple and easy to use interface, Greenwich Idea is a great tool for workgroups, founders, project managers or anyone looking for an efficient way to manage and share. Share your imagination.
+                </p>
+                <button type="button"> Let's Talk</button>
+            </div>
+        </div>
+    </section>
+</body>
+<style>
+    .body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Josefin Sans', sans-serif;
+        box-sizing: border-box;
+    }
+
+    .about-us {
+        width: 100%;
+        padding: 78px 0px;
+        background-color: #FDFCF6;
+    }
+
+    .about-text {
+        width: 550px;
+    }
+
+    .main {
+        width: 1130px;
+        max-width: 95%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .about-text h5 {
+        color: black;
+        font-size: 25px;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+    }
+
+    span {
+        color: #F78A3A;
+    }
+
+    .about-text p {
+        color: black;
+        letter-spacing: 1px;
+        line-height: 28px;
+        font-size: 18px;
+        margin-bottom: 45px;
+    }
+
+    button {
+        background: #F78A3A;
+        color: black;
+        text-decoration: none;
+        border: 2px solid transparent;
+        font-weight: bold;
+        padding: 13px 30px;
+        border-radius: 30px;
+        transition: .4s;
+    }
+
+        button:hover {
+            background: transparent;
+            border: 2px solid #F78A3A;
+            cursor: pointer;
+        }
+</style>
